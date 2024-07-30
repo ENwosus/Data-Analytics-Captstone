@@ -1,0 +1,121 @@
+---
+title: "Capstone case study 2"
+author: "Emmanuel Nwosu"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Broad Objective
+This case study is designed to use fitness data to inform the stakeholders at Bellabeat, a high-tech company that manufactures health-focused smart products, especially for women. The Analysis of the fitness data would help the company gain insights into the usage of their products and the outcomes. This analysis follows the six steps of the data analysis process: ask, prepare, process, analyze, share, and act.
+
+#### 	Step One: ASK
+In this phase, the objective is to analyze smart device usage data to gain insight into how consumers use non-Bellabeat smart devices. The guiding questions are as follows:
+
+##### a)	Guiding Questions:
+  •	What is the problem you are trying to solve?
+  •	How can your insights drive business decisions?
+  
+##### b)	Key Tasks:
+•	Identification of the business task: 
+To use the information from the data to help the company target the fitness market properly.
+
+##### •	The stakeholders identified: 
+The main stakeholders of interest in this analysis are: Urška Sršen: Bellabeat’s co-founder and Chief Creative Officer; and Sando Mur: Mathematician and Bellabeat’s cofounder; key member of the Bellabeat executive team. Others are the Bellabeat marketing analytics team, which is a team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Bellabeat’s marketing strategy.
+
+##### c) The business task:
+The business task is to understand the usage pattern of these smart devices namely the Bellabeat app, Leaf, Time and Spring and use the information to better inform the stakeholders on making better marketing decisions.
+
+#### Step Two: Prepare
+
+##### Deliverable: A description of all data sources used
+In this step, the data used for the analysis is a public dataset called FitBit Fitness Tracker Data (CC0: Public Domain, dataset made available through Mobius). It is stored as a Kaggle data set containing personal fitness trackers from thirty Fitbit users. The data is stored in different files detailing daily activities, hourly activities, and so on, which are stored as CSV files to make data merging and cleaning easier since the data contains primary and secondary keys.
+
+##### Sort and Filtering of Data: 
+The focus in this analysis is the daily data instead of the hourly data because once the hourly or minute data are aggregated into daily data, one would get average information about user behaviour. I did some merging of data where necessary, although some of them were not utilized such as merging of hourly data.
+
+### Setting up My Environment
+NB: The packages that are needed for data cleaning and analysis are installed 
+and loaded. These include tidyverse, ggplot2, etc as shown in the code chunk
+
+```{r Loading packages}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(skimr)
+library(janitor)
+library(here)
+```
+
+### Data Processing: The datasets are imported and cleaned for Analysis
+NB: They are imported as .csv files from the unzipped folder
+
+```{r Importing Daily Activity Data Merged and Hourly data for merging}
+hourlyCalories_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/hourlyCalories_merged.csv")
+View(hourlyCalories_merged)
+head(hourlyCalories_merged)
+hourlyIntensities_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/hourlyIntensities_merged.csv")
+#Correct merging requires using both Id and ActivityHour
+new_data_merges<- merge(hourlyCalories_merged, hourlyIntensities_merged, by=c("Id", "ActivityHour"))
+#the other data is imported from .csv
+hourlySteps_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/hourlySteps_merged.csv")
+new_data_merges2<- merge(new_data_merges, hourlySteps_merged, by=c("Id", "ActivityHour"))
+head(new_data_merges2)
+#Next we import and merge daily activity data
+dailyActivity_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv")
+dailyCalories_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/dailyCalories_merged.csv")
+dailyIntensities_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/dailyIntensities_merged.csv")
+dailySteps_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/dailySteps_merged.csv")
+#Next the minute by minute data are imported for merging
+sleepDay_merged <- read.csv("~/RStudio Exercises and Data/archive (2)/mturkfitbit_export_4.12.16-5.12.16/Fitabase Data 4.12.16-5.12.16/sleepDay_merged.csv")
+sleep_dailyactivity_data_merged <- merge(dailyActivity_merged, sleepDay_merged, by="Id")
+```
+
+### Data Analysis:  Data Cleaning and Descriptive Statistics
+```{r Data Cleaning and Descriptives}
+filtered_daily_activity_m <- dailyActivity_merged %>%
+  group_by(Id) %>%
+  summarise(mean_totsteps1 = mean(TotalSteps, na.rm = T))
+View(filtered_daily_activity_m)
+group_mean <- sleepDay_merged %>%
+    group_by(Id) %>%
+   summarise_at(vars(TotalMinutesAsleep),
+               list(Mean_TotalMinutesAsleep = mean))
+View(group_mean)
+View(group_mean)
+# Summarizing by ID 
+new_data_merges2 %>% 
+  group_by(Id) %>% 
+  drop_na() %>% 
+  summarize( max_calor = max(Calories ), mean_calor = mean(Calories), max_totalintensity= max(TotalIntensity), mean_totalintensity=mean(TotalIntensity), cor(Calories,TotalIntensity))
+# Summarizing merged_daily_sleep_data_merged by ID
+sleep_dailyactivity_data_merged %>% 
+  group_by(Id) %>% 
+  drop_na() %>% 
+  summarize( mean_calor = mean(Calories), mean_TotalSteps=mean(TotalSteps), mean_TotalDistance=mean(TotalDistance), mean_SedentaryMinutes=mean(SedentaryMinutes), mean_TotalMinutesAsleep= mean(TotalMinutesAsleep),
+             mean_TotalTimeInBed=mean(TotalTimeInBed))
+
+```
+
+## The Data Visualizations
+NB: This shows pictorially how some variables are related 
+```{r Data Visualizations Via Scatter plots and Bar Charts}
+#There appears to be almost a perfect linear relationship between TotalMinutesAsleep and TotalTimeInBed by respondents ID
+ggplot(data = sleepDay_merged, mapping = aes(x=TotalMinutesAsleep, y =TotalTimeInBed))+ geom_point() + labs(title = "Relationship between SleepTime and BedTime", subtitle="Daily Fitness Activity Data", caption = "FitBit Fitness Tracker Data collected by Mobius") +   annotate("text", x=500, y=200, label="Strong Positive Linear Relationship", color="blue", fontface="bold", size=3.5, angle=25)
+ggplot(data = sleepDay_merged, mapping = aes(x=TotalMinutesAsleep, y =TotalTimeInBed))+ geom_point() + facet_wrap(~Id) + labs(title = "Relationship between SleepTime and BedTime", subtitle="Daily Fitness Activity Data by ID", caption = "FitBit Fitness Tracker Data collected by Mobius") 
+ggplot(dailyActivity_merged, mapping = aes(x = Calories, y = TotalSteps)) +geom_point() + labs(title = "Relationship between Steps and Calories", subtitle="Daily Fitness Activity Data", caption = "FitBit Fitness Tracker Data collected by Mobius") +   annotate("text", x=1000, y=20000, label="Weak Positive Linear Relationship", color="blue", fontface="bold", size=3.5, angle=25)
+ggplot(data=dailyActivity_merged, aes(x=TotalSteps, y=SedentaryMinutes)) + geom_point() + labs(title = "Relationship between Steps and Sedentary Minutes", subtitle="Daily Fitness Activity Data", caption = "FitBit Fitness Tracker Data collected by Mobius") +   annotate("text", x=25000, y=250, label="No clear Pattern", color="red", fontface="bold", size=4.5, angle=25)
+
+
+```
+
+#### Share and Act: Insights
+The findings show that total steps are achieved per day is highly correlated with the calories burned either by looking at the individual data. But aggregate data seems to suggest a positive relationship but weak correlation.
+
+There is no clear pattern between total steps and sedentary minutes.
+
+Total sleep time and time in bed are highly correlated. This means that individuals on average, go to bed only when they are about to sleep. They also get sufficient sleep that commensurates with the bedtime.
+
+
+
