@@ -1,0 +1,421 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Capstone case study 2},
+  pdfauthor={Emmanuel Nwosu},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Capstone case study 2}
+\author{Emmanuel Nwosu}
+\date{2024-07-30}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Broad Objective}\label{broad-objective}
+
+This case study is designed to use fitness data to inform the
+stakeholders at Bellabeat, a high-tech company that manufactures
+health-focused smart products, especially for women. The Analysis of the
+fitness data would help the company gain insights into the usage of
+their products and the outcomes. This analysis follows the six steps of
+the data analysis process: ask, prepare, process, analyze, share, and
+act.
+
+\paragraph{ Step One: ASK}\label{step-one-ask}
+
+In this phase, the objective is to analyze smart device usage data to
+gain insight into how consumers use non-Bellabeat smart devices. The
+guiding questions are as follows:
+
+\subparagraph{a) Guiding Questions:}\label{a-guiding-questions}
+
+• What is the problem you are trying to solve? • How can your insights
+drive business decisions?
+
+\subparagraph{b) Key Tasks:}\label{b-key-tasks}
+
+• Identification of the business task: To use the information from the
+data to help the company target the fitness market properly.
+
+\subparagraph{• The stakeholders
+identified:}\label{the-stakeholders-identified}
+
+The main stakeholders of interest in this analysis are: Urška Sršen:
+Bellabeat's co-founder and Chief Creative Officer; and Sando Mur:
+Mathematician and Bellabeat's cofounder; key member of the Bellabeat
+executive team. Others are the Bellabeat marketing analytics team, which
+is a team of data analysts responsible for collecting, analyzing, and
+reporting data that helps guide Bellabeat's marketing strategy.
+
+\subparagraph{c) The business task:}\label{c-the-business-task}
+
+The business task is to understand the usage pattern of these smart
+devices namely the Bellabeat app, Leaf, Time and Spring and use the
+information to better inform the stakeholders on making better marketing
+decisions.
+
+\paragraph{Step Two: Prepare}\label{step-two-prepare}
+
+\subparagraph{Deliverable: A description of all data sources
+used}\label{deliverable-a-description-of-all-data-sources-used}
+
+In this step, the data used for the analysis is a public dataset called
+FitBit Fitness Tracker Data (CC0: Public Domain, dataset made available
+through Mobius). It is stored as a Kaggle data set containing personal
+fitness trackers from thirty Fitbit users. The data is stored in
+different files detailing daily activities, hourly activities, and so
+on, which are stored as CSV files to make data merging and cleaning
+easier since the data contains primary and secondary keys.
+
+\subparagraph{Sort and Filtering of
+Data:}\label{sort-and-filtering-of-data}
+
+The focus in this analysis is the daily data instead of the hourly data
+because once the hourly or minute data are aggregated into daily data,
+one would get average information about user behaviour. I did some
+merging of data where necessary, although some of them were not utilized
+such as merging of hourly data.
+
+\subsubsection{Setting up My
+Environment}\label{setting-up-my-environment}
+
+NB: The packages that are needed for data cleaning and analysis are
+installed and loaded. These include tidyverse, ggplot2, etc as shown in
+the code chunk
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(janitor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(here)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## here() starts at C:/Users/USER/Documents/RStudio Exercises and Data
+\end{verbatim}
+
+\subsubsection{Data Processing: The datasets are imported and cleaned
+for
+Analysis}\label{data-processing-the-datasets-are-imported-and-cleaned-for-analysis}
+
+NB: They are imported as .csv files from the unzipped folder
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hourlyCalories\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/hourlyCalories\_merged.csv"}\NormalTok{)}
+\FunctionTok{View}\NormalTok{(hourlyCalories\_merged)}
+\FunctionTok{head}\NormalTok{(hourlyCalories\_merged)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id          ActivityHour Calories
+## 1 1503960366 4/12/2016 12:00:00 AM       81
+## 2 1503960366  4/12/2016 1:00:00 AM       61
+## 3 1503960366  4/12/2016 2:00:00 AM       59
+## 4 1503960366  4/12/2016 3:00:00 AM       47
+## 5 1503960366  4/12/2016 4:00:00 AM       48
+## 6 1503960366  4/12/2016 5:00:00 AM       48
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hourlyIntensities\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/hourlyIntensities\_merged.csv"}\NormalTok{)}
+\CommentTok{\#Correct merging requires using both Id and ActivityHour}
+\NormalTok{new\_data\_merges}\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(hourlyCalories\_merged, hourlyIntensities\_merged, }\AttributeTok{by=}\FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"ActivityHour"}\NormalTok{))}
+\CommentTok{\#the other data is imported from .csv}
+\NormalTok{hourlySteps\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/hourlySteps\_merged.csv"}\NormalTok{)}
+\NormalTok{new\_data\_merges2}\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(new\_data\_merges, hourlySteps\_merged, }\AttributeTok{by=}\FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"ActivityHour"}\NormalTok{))}
+\FunctionTok{head}\NormalTok{(new\_data\_merges2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id          ActivityHour Calories TotalIntensity AverageIntensity
+## 1 1503960366  4/12/2016 1:00:00 AM       61              8         0.133333
+## 2 1503960366  4/12/2016 1:00:00 PM       66              6         0.100000
+## 3 1503960366 4/12/2016 10:00:00 AM       99             29         0.483333
+## 4 1503960366 4/12/2016 10:00:00 PM       65              9         0.150000
+## 5 1503960366 4/12/2016 11:00:00 AM       76             12         0.200000
+## 6 1503960366 4/12/2016 11:00:00 PM       81             21         0.350000
+##   StepTotal
+## 1       160
+## 2       221
+## 3       676
+## 4        89
+## 5       360
+## 6       338
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Next we import and merge daily activity data}
+\NormalTok{dailyActivity\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/dailyActivity\_merged.csv"}\NormalTok{)}
+\NormalTok{dailyCalories\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/dailyCalories\_merged.csv"}\NormalTok{)}
+\NormalTok{dailyIntensities\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/dailyIntensities\_merged.csv"}\NormalTok{)}
+\NormalTok{dailySteps\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/dailySteps\_merged.csv"}\NormalTok{)}
+\CommentTok{\#Next the minute by minute data are imported for merging}
+\NormalTok{sleepDay\_merged }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/RStudio Exercises and Data/archive (2)/mturkfitbit\_export\_4.12.16{-}5.12.16/Fitabase Data 4.12.16{-}5.12.16/sleepDay\_merged.csv"}\NormalTok{)}
+\NormalTok{sleep\_dailyactivity\_data\_merged }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(dailyActivity\_merged, sleepDay\_merged, }\AttributeTok{by=}\StringTok{"Id"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Data Analysis: Data Cleaning and Descriptive
+Statistics}\label{data-analysis-data-cleaning-and-descriptive-statistics}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filtered\_daily\_activity\_m }\OtherTok{\textless{}{-}}\NormalTok{ dailyActivity\_merged }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Id) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_totsteps1 =} \FunctionTok{mean}\NormalTok{(TotalSteps, }\AttributeTok{na.rm =}\NormalTok{ T))}
+\FunctionTok{View}\NormalTok{(filtered\_daily\_activity\_m)}
+\NormalTok{group\_mean }\OtherTok{\textless{}{-}}\NormalTok{ sleepDay\_merged }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(Id) }\SpecialCharTok{\%\textgreater{}\%}
+   \FunctionTok{summarise\_at}\NormalTok{(}\FunctionTok{vars}\NormalTok{(TotalMinutesAsleep),}
+               \FunctionTok{list}\NormalTok{(}\AttributeTok{Mean\_TotalMinutesAsleep =}\NormalTok{ mean))}
+\FunctionTok{View}\NormalTok{(group\_mean)}
+\FunctionTok{View}\NormalTok{(group\_mean)}
+\CommentTok{\# Summarizing by ID }
+\NormalTok{new\_data\_merges2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{( }\AttributeTok{max\_calor =} \FunctionTok{max}\NormalTok{(Calories ), }\AttributeTok{mean\_calor =} \FunctionTok{mean}\NormalTok{(Calories), }\AttributeTok{max\_totalintensity=} \FunctionTok{max}\NormalTok{(TotalIntensity), }\AttributeTok{mean\_totalintensity=}\FunctionTok{mean}\NormalTok{(TotalIntensity), }\FunctionTok{cor}\NormalTok{(Calories,TotalIntensity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 33 x 6
+##            Id max_calor mean_calor max_totalintensity mean_totalintensity
+##         <dbl>     <int>      <dbl>              <int>               <dbl>
+##  1 1503960366       318       78.5                159               16.2 
+##  2 1624580081       374       62.5                169                8.04
+##  3 1644430081       456      119.                 130               10.5 
+##  4 1844505072       184       66.6                 67                5.02
+##  5 1927972279       265       91.5                 63                1.86
+##  6 2022484408       486      105.                 157               17.0 
+##  7 2026352035       171       64.9                 56               10.8 
+##  8 2320127002       191       72.6                 67                8.74
+##  9 2347167796       334       88.7                132               14.5 
+## 10 2873212765       410       80.2                148               15.1 
+## # i 23 more rows
+## # i 1 more variable: `cor(Calories, TotalIntensity)` <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summarizing merged\_daily\_sleep\_data\_merged by ID}
+\NormalTok{sleep\_dailyactivity\_data\_merged }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{( }\AttributeTok{mean\_calor =} \FunctionTok{mean}\NormalTok{(Calories), }\AttributeTok{mean\_TotalSteps=}\FunctionTok{mean}\NormalTok{(TotalSteps), }\AttributeTok{mean\_TotalDistance=}\FunctionTok{mean}\NormalTok{(TotalDistance), }\AttributeTok{mean\_SedentaryMinutes=}\FunctionTok{mean}\NormalTok{(SedentaryMinutes), }\AttributeTok{mean\_TotalMinutesAsleep=} \FunctionTok{mean}\NormalTok{(TotalMinutesAsleep),}
+             \AttributeTok{mean\_TotalTimeInBed=}\FunctionTok{mean}\NormalTok{(TotalTimeInBed))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 7
+##           Id mean_calor mean_TotalSteps mean_TotalDistance mean_SedentaryMinutes
+##        <dbl>      <dbl>           <dbl>              <dbl>                 <dbl>
+##  1    1.50e9      1816.          12117.              7.81                   848.
+##  2    1.64e9      2811.           7283.              5.30                  1162.
+##  3    1.84e9      1573.           2580.              1.71                  1207.
+##  4    1.93e9      2173.            916.              0.635                 1317.
+##  5    2.03e9      1541.           5567.              3.45                   689.
+##  6    2.32e9      1724.           4717.              3.19                  1220.
+##  7    2.35e9      2043.           9520.              6.36                   687.
+##  8    3.98e9      1514.          10985.              7.52                   708.
+##  9    4.02e9      2386.           2267.              1.63                  1237.
+## 10    4.32e9      2038.           7269.              4.89                   736.
+## # i 14 more rows
+## # i 2 more variables: mean_TotalMinutesAsleep <dbl>, mean_TotalTimeInBed <dbl>
+\end{verbatim}
+
+\subsection{The Data Visualizations}\label{the-data-visualizations}
+
+NB: This shows pictorially how some variables are related
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#There appears to be almost a perfect linear relationship between TotalMinutesAsleep and TotalTimeInBed by respondents ID}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ sleepDay\_merged, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{TotalMinutesAsleep, }\AttributeTok{y =}\NormalTok{TotalTimeInBed))}\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relationship between SleepTime and BedTime"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"Daily Fitness Activity Data"}\NormalTok{, }\AttributeTok{caption =} \StringTok{"FitBit Fitness Tracker Data collected by Mobius"}\NormalTok{) }\SpecialCharTok{+}   \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x=}\DecValTok{500}\NormalTok{, }\AttributeTok{y=}\DecValTok{200}\NormalTok{, }\AttributeTok{label=}\StringTok{"Strong Positive Linear Relationship"}\NormalTok{, }\AttributeTok{color=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{fontface=}\StringTok{"bold"}\NormalTok{, }\AttributeTok{size=}\FloatTok{3.5}\NormalTok{, }\AttributeTok{angle=}\DecValTok{25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Emmanuel-Nwosu_files/figure-latex/Data Visualizations Via Scatter plots and Bar Charts-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ sleepDay\_merged, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{TotalMinutesAsleep, }\AttributeTok{y =}\NormalTok{TotalTimeInBed))}\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Id) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relationship between SleepTime and BedTime"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"Daily Fitness Activity Data by ID"}\NormalTok{, }\AttributeTok{caption =} \StringTok{"FitBit Fitness Tracker Data collected by Mobius"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Emmanuel-Nwosu_files/figure-latex/Data Visualizations Via Scatter plots and Bar Charts-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dailyActivity\_merged, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Calories, }\AttributeTok{y =}\NormalTok{ TotalSteps)) }\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relationship between Steps and Calories"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"Daily Fitness Activity Data"}\NormalTok{, }\AttributeTok{caption =} \StringTok{"FitBit Fitness Tracker Data collected by Mobius"}\NormalTok{) }\SpecialCharTok{+}   \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x=}\DecValTok{1000}\NormalTok{, }\AttributeTok{y=}\DecValTok{20000}\NormalTok{, }\AttributeTok{label=}\StringTok{"Weak Positive Linear Relationship"}\NormalTok{, }\AttributeTok{color=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{fontface=}\StringTok{"bold"}\NormalTok{, }\AttributeTok{size=}\FloatTok{3.5}\NormalTok{, }\AttributeTok{angle=}\DecValTok{25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Emmanuel-Nwosu_files/figure-latex/Data Visualizations Via Scatter plots and Bar Charts-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{dailyActivity\_merged, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{TotalSteps, }\AttributeTok{y=}\NormalTok{SedentaryMinutes)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Relationship between Steps and Sedentary Minutes"}\NormalTok{, }\AttributeTok{subtitle=}\StringTok{"Daily Fitness Activity Data"}\NormalTok{, }\AttributeTok{caption =} \StringTok{"FitBit Fitness Tracker Data collected by Mobius"}\NormalTok{) }\SpecialCharTok{+}   \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x=}\DecValTok{25000}\NormalTok{, }\AttributeTok{y=}\DecValTok{250}\NormalTok{, }\AttributeTok{label=}\StringTok{"No clear Pattern"}\NormalTok{, }\AttributeTok{color=}\StringTok{"red"}\NormalTok{, }\AttributeTok{fontface=}\StringTok{"bold"}\NormalTok{, }\AttributeTok{size=}\FloatTok{4.5}\NormalTok{, }\AttributeTok{angle=}\DecValTok{25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Emmanuel-Nwosu_files/figure-latex/Data Visualizations Via Scatter plots and Bar Charts-4.pdf}
+
+\paragraph{Share and Act: Insights}\label{share-and-act-insights}
+
+The findings show that total steps are achieved per day is highly
+correlated with the calories burned either by looking at the individual
+data. But aggregate data seems to suggest a positive relationship but
+weak correlation.
+
+There is no clear pattern between total steps and sedentary minutes.
+
+Total sleep time and time in bed are highly correlated. This means that
+individuals on average, go to bed only when they are about to sleep.
+They also get sufficient sleep that commensurates with the bedtime.
+
+\end{document}
